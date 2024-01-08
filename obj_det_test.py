@@ -36,7 +36,18 @@ while True:
 
     # send frame to model
     frame = cv.flip(frame, 1)
-    result = model(frame, stream=True)
+    results = model(frame, stream=True)
+
+    # bounding boxes
+    for result in results:
+        boxes = result.boxes
+
+        for box in boxes:
+            x1, y1, x2, y2 = box.xyxy[0]
+            x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
+            name_index = int(box.cls[0])
+            cv.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 3)
+            cv.putText(frame, classes[name_index], [x1, y1], cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
     # show frame (this is a video so wait 1ms)
     cv.imshow("webcam", frame)

@@ -4,7 +4,7 @@ The purpose of this repository is to document the machine learning topics I have
 ## This repository includes projects related to
 - OpenCV
 - YOLO
-- Computer Vision
+- Object Detection
 
 ### Future
 - Convolutional Neural Networks (CNNs)
